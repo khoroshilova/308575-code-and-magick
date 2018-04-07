@@ -19,17 +19,17 @@ var renderText = function (ctx, x, y, text) {
   ctx.fillText(text, x, y);
 };
 
-var rendomOpacity = function () {
+var randomOpacity = function () {
   var opacity = (Math.random() * 0.9).toFixed(2);
   return 'rgba(0, 0, 255, ' + opacity + ')';
 };
 
-var getMaxElement = function (arr) {
-  var maxElement = arr[0];
+var getMaxElement = function (elements) {
+  var maxElement = elements[0];
 
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i] > maxElement) {
-      maxElement = arr[i];
+  for (var i = 0; i < elements.length; i++) {
+    if (elements[i] > maxElement) {
+      maxElement = elements[i];
     }
   }
 
@@ -49,7 +49,7 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = rendomOpacity();
+      ctx.fillStyle = randomOpacity();
     }
 
     var timeRect = BAR_HEIGHT * times[i] / maxTime;
