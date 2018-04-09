@@ -8,6 +8,7 @@ var GAP = 10;
 var GAP_X = 50; // отступ по горизонтали
 var BAR_WIDTH = 40; // ширина колонки
 var BAR_HEIGHT = 150; // максимальная высота колонки
+var MAIN_PLAYER = 'Вы';
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -19,17 +20,17 @@ var renderText = function (ctx, x, y, text) {
   ctx.fillText(text, x, y);
 };
 
-var rendomOpacity = function () {
+var randomOpacity = function () {
   var opacity = (Math.random() * 0.9).toFixed(2);
   return 'rgba(0, 0, 255, ' + opacity + ')';
 };
 
-var getMaxElement = function (arr) {
-  var maxElement = arr[0];
+var getMaxElement = function (elements) {
+  var maxElement = elements[0];
 
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i] > maxElement) {
-      maxElement = arr[i];
+  for (var i = 1; i < elements.length; i++) {
+    if (elements[i] > maxElement) {
+      maxElement = elements[i];
     }
   }
 
@@ -46,10 +47,10 @@ window.renderStatistics = function (ctx, names, times) {
 
   for (var i = 0; i < names.length; i++) {
 
-    if (names[i] === 'Вы') {
+    if (names[i] === MAIN_PLAYER) {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = rendomOpacity();
+      ctx.fillStyle = randomOpacity();
     }
 
     var timeRect = BAR_HEIGHT * times[i] / maxTime;
