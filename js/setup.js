@@ -27,16 +27,16 @@ var renderWizard = function (wizard) {
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
 // Фунция генерации случайных данных из любого массива
-var randomArrays = function (array) {
-  return array[Math.floor(Math.random() * array.length)];
+var getRandomArrays = function (items) {
+  return items[Math.floor(Math.random() * items.length)];
 };
 
 // Фунция генерации случайных данных волшебника
 var getRandomWizards = function () {
   return {
-    name: randomArrays(NAMES) + ' ' + randomArrays(SURNAMES),
-    coatColor: randomArrays(COAT_COLORS),
-    eyesColor: randomArrays(EYES_COLORS)
+    name: getRandomArrays(NAMES) + ' ' + getRandomArrays(SURNAMES),
+    coatColor: getRandomArrays(COAT_COLORS),
+    eyesColor: getRandomArrays(EYES_COLORS)
   };
 };
 

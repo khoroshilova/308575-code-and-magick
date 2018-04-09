@@ -28,7 +28,7 @@ var randomOpacity = function () {
 var getMaxElement = function (elements) {
   var maxElement = elements[0];
 
-  for (var i = 0; i < elements.length - 1; i++) {
+  for (var i = 1; i < elements.length; i++) {
     if (elements[i] > maxElement) {
       maxElement = elements[i];
     }
