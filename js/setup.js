@@ -7,7 +7,6 @@ var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_CARDS = 4;
 
 var userDialog = document.querySelector('.setup');
-// userDialog.classList.remove('hidden');
 
 var similarListElement = userDialog.querySelector('.setup-similar-list');
 
@@ -81,6 +80,7 @@ var openPopup = function () {
 
 var closePopup = function () {
   setup.classList.add('hidden');
+  setup.removeAttribute('style');
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
@@ -144,4 +144,47 @@ wizardFireball.style.cursor = 'pointer';
 wizardFireball.addEventListener('click', function () {
   var wizardFireballColor = getRandomItem(WIZARD_FIREBALL_COLORS);
   wizardFireball.style.background = wizardFireballColor;
+});
+
+// Перетаскивание предметов
+var shopElement = document.querySelector('.setup-artifacts-shop');
+var artifactsElement = document.querySelector('.setup-artifacts');
+var draggedItem = null;
+
+shopElement.addEventListener('dragstart', function (evt) {
+  if (evt.target.tagName.toLowerCase() === 'img') {
+    artifactsElement.style.outline = '2px dashed red';
+    draggedItem = evt.target;
+    evt.dataTransfer.setData('text/plain', evt.target.alt);
+  }
+});
+
+artifactsElement.addEventListener('dragover', function (evt) {
+  evt.preventDefault();
+  return false;
+});
+
+shopElement.addEventListener('dragend', function (evt) {
+  evt.preventDefault();
+  artifactsElement.style.outline = '';
+});
+
+artifactsElement.addEventListener('drop', function (evt) {
+  var cloneDraggedItem = draggedItem.cloneNode();
+  evt.target.style.backgroundColor = '';
+  if (evt.target.tagName.toLowerCase() !== 'img' && evt.target.hasChildNodes() === false) {
+    cloneDraggedItem.setAttribute('draggable', 'false');
+    evt.target.appendChild(cloneDraggedItem);
+  }
+  evt.preventDefault();
+});
+
+artifactsElement.addEventListener('dragenter', function (evt) {
+  evt.target.style.backgroundColor = 'yellow';
+  evt.preventDefault();
+});
+
+artifactsElement.addEventListener('dragleave', function (evt) {
+  evt.target.style.backgroundColor = '';
+  evt.preventDefault();
 });
