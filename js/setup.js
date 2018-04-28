@@ -28,9 +28,9 @@
   // Фунция генерации случайных данных волшебника
   var getRandomWizard = function () {
     return {
-      name: window.util.getRandomItemFromArray(NAMES) + ' ' + window.util.getRandomItemFromArray(SURNAMES),
-      coatColor: window.util.getRandomItemFromArray(COAT_COLORS),
-      eyesColor: window.util.getRandomItemFromArray(EYES_COLORS)
+      name: window.util.getRandomItem(NAMES) + ' ' + window.util.getRandomItem(SURNAMES),
+      coatColor: window.util.getRandomItem(COAT_COLORS),
+      eyesColor: window.util.getRandomItem(EYES_COLORS)
     };
   };
 
@@ -42,9 +42,9 @@
 
   var fragments = function () {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < wizards.length; i++) {
-      fragment.appendChild(renderWizard(wizards[i]));
-    }
+    wizards.forEach(function (item) {
+      fragment.appendChild(renderWizard(item));
+    });
     return fragment;
   };
 

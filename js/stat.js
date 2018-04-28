@@ -28,13 +28,11 @@
 
   var getMaxElement = function (elements) {
     var maxElement = elements[0];
-
-    for (var i = 1; i < elements.length; i++) {
+    elements.forEach(function (i) {
       if (elements[i] > maxElement) {
         maxElement = elements[i];
       }
-    }
-
+    });
     return maxElement;
   };
 
@@ -46,21 +44,14 @@
 
     var maxTime = getMaxElement(times);
 
-    for (var i = 0; i < names.length; i++) {
-
-      if (names[i] === MAIN_PLAYER) {
-        ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-      } else {
-        ctx.fillStyle = randomOpacity();
-      }
-
-      var timeRect = BAR_HEIGHT * times[i] / maxTime;
+    times.forEach(function (timeRect, i) {
+      ctx.fillStyle = (names[i] === MAIN_PLAYER) ? 'rgba(255, 0, 0, 1)' : randomOpacity();
+      timeRect = BAR_HEIGHT * times[i] / maxTime;
       ctx.fillRect(CLOUD_X + (BAR_WIDTH + GAP_X) * i, BAR_HEIGHT + GAP + CLOUD_Y - timeRect, BAR_WIDTH, timeRect);
 
       ctx.fillStyle = 'black';
       ctx.fillText(Math.floor(times[i]), CLOUD_X + (BAR_WIDTH + GAP_X) * i, CLOUD_Y + BAR_HEIGHT - timeRect);
       ctx.fillText(names[i], CLOUD_X + (BAR_WIDTH + GAP_X) * i, CLOUD_HEIGHT);
-
-    }
+    });
   };
 })();

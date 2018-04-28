@@ -12,13 +12,13 @@
 
   wizardEyes.style.cursor = 'pointer';
   wizardEyes.addEventListener('click', function () {
-    var wizardEyesColor = window.util.getRandomItemFromArray(WIZARD_EYES_COLORS);
+    var wizardEyesColor = window.util.getRandomItem(WIZARD_EYES_COLORS);
     wizardEyes.style.fill = wizardEyesColor;
   });
 
   wizardFireball.style.cursor = 'pointer';
   wizardFireball.addEventListener('click', function () {
-    var wizardFireballColor = window.util.getRandomItemFromArray(WIZARD_FIREBALL_COLORS);
+    var wizardFireballColor = window.util.getRandomItem(WIZARD_FIREBALL_COLORS);
     wizardFireball.style.background = wizardFireballColor;
   });
 })();

@@ -25,13 +25,13 @@
   });
 
   artifactsElement.addEventListener('drop', function (evt) {
-    var cloneDraggedItem = draggedItem.cloneNode();
+    evt.preventDefault();
     evt.target.style.backgroundColor = '';
     if (evt.target.tagName.toLowerCase() !== 'img' && evt.target.hasChildNodes() === false) {
+      var cloneDraggedItem = draggedItem.cloneNode();
       cloneDraggedItem.setAttribute('draggable', 'false');
       evt.target.appendChild(cloneDraggedItem);
     }
-    evt.preventDefault();
   });
 
   artifactsElement.addEventListener('dragenter', function (evt) {

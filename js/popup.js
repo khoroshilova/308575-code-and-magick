@@ -14,7 +14,7 @@
     if (userNameInput === document.activeElement) {
       onPopupEscPress();
     } else if (evt.keyCode === ESC_KEYCODE) {
-      closePopup();
+      onClosePopup();
     }
   };
 
@@ -23,7 +23,7 @@
     document.addEventListener('keydown', onPopupEscPress);
   };
 
-  var closePopup = function () {
+  var onClosePopup = function () {
     setup.classList.add('hidden');
     setup.removeAttribute('style');
     document.removeEventListener('keydown', onPopupEscPress);
@@ -39,13 +39,11 @@
     }
   });
 
-  setupClose.addEventListener('click', function () {
-    closePopup();
-  });
+  setupClose.addEventListener('click', onClosePopup);
 
   setupClose.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
-      closePopup();
+      onClosePopup();
     }
   });
 })();

@@ -3,6 +3,7 @@
 (function () {
   var setup = document.querySelector('.setup');
   var userNameInput = setup.querySelector('.setup-user-name');
+
   // Валидность формы
   userNameInput.addEventListener('invalid', function (evt) {
     if (userNameInput.validity.tooShort) {
@@ -18,11 +19,6 @@
 
   // Поддержка minlength для Edge
   userNameInput.addEventListener('input', function (evt) {
-    var target = evt.target;
-    if (target.value.length < 2) {
-      target.setCustomValidity('Слишком короткое имя!');
-    } else {
-      target.setCustomValidity('');
-    }
+    evt.target.setCustomValidity(evt.target.value.length < 2 ? 'Слишком короткое имя!' : '');
   });
 })();
